@@ -16,7 +16,7 @@ docs/
 
 ```bash
 git add docs/
-git commit -m "feat: add GitHub Pages website"
+git commit -m "feat: add GitHub Pages website with Python/Docker build options"
 git push origin main
 ```
 

@@ -95,7 +95,15 @@
                     <div class="terminal-body">
                         <div class="terminal-line">
                             <span class="prompt">$</span>
-                            <span class="command">docker run -p 5000:5000 localpdf</span>
+                            <span class="command">git clone https://github.com/virgiliojr94/localpdf.io.git</span>
+                        </div>
+                        <div class="terminal-line">
+                            <span class="prompt">$</span>
+                            <span class="command">cd localpdf.io && pip install -r requirements.txt</span>
+                        </div>
+                        <div class="terminal-line">
+                            <span class="prompt">$</span>
+                            <span class="command">python app.py</span>
                         </div>
                         <div class="terminal-line output">
                             <span class="success">✓</span> LocalPDF.io rodando em http://localhost:5000
@@ -207,49 +215,22 @@
             </div>
             
             <div class="quickstart-tabs">
-                <button class="tab-btn active" data-tab="docker">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M13.5 2H6v3h7.5V2zm0 4.5H6v3h7.5v-3zM6 11h7.5v3H6v-3zM21 9.5c-.5-.5-1.3-.8-2.3-.8-.5 0-1 .1-1.5.2-.1-1.3-.8-2.4-2-3.2.2.7.3 1.5.1 2.3-.3 1.2-1 2.1-2.1 2.7.1.3.1.6.1.9 0 2.5-2 4.5-4.5 4.5S4.3 14 4.3 11.5c0-.5.1-1 .2-1.5-.5-.2-1-.5-1.3-.8-.8-.7-1.2-1.5-1.2-2.7 0-1.1.4-2 1.2-2.7C3.9 3.1 4.8 3 6 3v2c-.7 0-1.2.1-1.5.4-.3.3-.5.7-.5 1.3 0 .6.2 1 .5 1.3.3.3.8.4 1.5.4h.5v2h-.5c-.7 0-1.2-.1-1.5-.4-.3-.3-.5-.7-.5-1.3 0-.3.1-.6.2-.8-.5.4-.8.9-.8 1.6 0 .6.2 1 .5 1.3.3.3.8.4 1.5.4h.5c.1.5.3.9.5 1.3-.7-.2-1.3-.5-1.8-1-.8-.7-1.2-1.5-1.2-2.7 0-1.1.4-2 1.2-2.7.7-.6 1.6-.9 2.8-.9h7.5c1.2 0 2.1.3 2.8.9.7.6 1.2 1.5 1.2 2.7 0 1.1-.4 2-1.2 2.7z"/>
-                    </svg>
-                    Docker
-                </button>
-                <button class="tab-btn" data-tab="python">
+                <button class="tab-btn active" data-tab="python">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
                         <path d="M14.25.18l.9.2.73.26.59.3.45.32.34.34.25.34.16.33.1.3.04.26.02.2-.01.13V8.5l-.05.63-.13.55-.21.46-.26.38-.3.31-.33.25-.35.19-.35.14-.33.1-.3.07-.26.04-.21.02H8.77l-.69.05-.59.14-.5.22-.41.27-.33.32-.27.35-.2.36-.15.37-.1.35-.07.32-.04.27-.02.21v3.06H3.17l-.21-.03-.28-.07-.32-.12-.35-.18-.36-.26-.36-.36-.35-.46-.32-.59-.28-.73-.21-.88-.14-1.05-.05-1.23.06-1.22.16-1.04.24-.87.32-.71.36-.57.4-.44.42-.33.42-.24.4-.16.36-.1.32-.05.24-.01h.16l.06.01h8.16v-.83H6.18l-.01-2.75-.02-.37.05-.34.11-.31.17-.28.25-.26.31-.23.38-.2.44-.18.51-.15.58-.12.64-.1.71-.06.77-.04.84-.02 1.27.05zm-6.3 1.98l-.23.33-.08.41.08.41.23.34.33.22.41.09.41-.09.33-.22.23-.34.08-.41-.08-.41-.23-.33-.33-.22-.41-.09-.41.09zm13.09 3.95l.28.06.32.12.35.18.36.27.36.35.35.47.32.59.28.73.21.88.14 1.04.05 1.23-.06 1.23-.16 1.04-.24.86-.32.71-.36.57-.4.45-.42.33-.42.24-.4.16-.36.09-.32.05-.24.02-.16-.01h-8.22v.82h5.84l.01 2.76.02.36-.05.34-.11.31-.17.29-.25.25-.31.24-.38.2-.44.17-.51.15-.58.13-.64.09-.71.07-.77.04-.84.01-1.27-.04-1.07-.14-.9-.2-.73-.25-.59-.3-.45-.33-.34-.34-.25-.34-.16-.33-.1-.3-.04-.25-.02-.2.01-.13v-5.34l.05-.64.13-.54.21-.46.26-.38.3-.32.33-.24.35-.2.35-.14.33-.1.3-.06.26-.04.21-.02.13-.01h5.84l.69-.05.59-.14.5-.21.41-.28.33-.32.27-.35.2-.36.15-.36.1-.35.07-.32.04-.28.02-.21V6.07h2.09l.14.01zm-6.47 14.25l-.23.33-.08.41.08.41.23.33.33.23.41.08.41-.08.33-.23.23-.33.08-.41-.08-.41-.23-.33-.33-.23-.41-.08-.41.08z"/>
                     </svg>
                     Python
                 </button>
-                <button class="tab-btn" data-tab="source">
+                <button class="tab-btn" data-tab="docker">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                        <path d="M13.5 2H6v3h7.5V2zm0 4.5H6v3h7.5v-3zM6 11h7.5v3H6v-3zM21 9.5c-.5-.5-1.3-.8-2.3-.8-.5 0-1 .1-1.5.2-.1-1.3-.8-2.4-2-3.2.2.7.3 1.5.1 2.3-.3 1.2-1 2.1-2.1 2.7.1.3.1.6.1.9 0 2.5-2 4.5-4.5 4.5S4.3 14 4.3 11.5c0-.5.1-1 .2-1.5-.5-.2-1-.5-1.3-.8-.8-.7-1.2-1.5-1.2-2.7 0-1.1.4-2 1.2-2.7C3.9 3.1 4.8 3 6 3v2c-.7 0-1.2.1-1.5.4-.3.3-.5.7-.5 1.3 0 .6.2 1 .5 1.3.3.3.8.4 1.5.4h.5v2h-.5c-.7 0-1.2-.1-1.5-.4-.3-.3-.5-.7-.5-1.3 0-.3.1-.6.2-.8-.5.4-.8.9-.8 1.6 0 .6.2 1 .5 1.3.3.3.8.4 1.5.4h.5c.1.5.3.9.5 1.3-.7-.2-1.3-.5-1.8-1-.8-.7-1.2-1.5-1.2-2.7 0-1.1.4-2 1.2-2.7.7-.6 1.6-.9 2.8-.9h7.5c1.2 0 2.1.3 2.8.9.7.6 1.2 1.5 1.2 2.7 0 1.1-.4 2-1.2 2.7z"/>
                     </svg>
-                    Source
+                    Docker Build
                 </button>
             </div>
 
             <div class="quickstart-content">
-                <div class="tab-content active" data-tab-content="docker">
-                    <div class="code-block">
-                        <div class="code-header">
-                            <span class="code-title">Terminal</span>
-                            <button class="copy-btn" data-copy="docker run -p 5000:5000 localpdf">
-                                <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                                    <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
-                                    <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
-                                </svg>
-                                Copiar
-                            </button>
-                        </div>
-                        <pre><code># Execute com Docker
-docker run -p 5000:5000 localpdf
-
-# Acesse no navegador
-open http://localhost:5000</code></pre>
-                    </div>
-                    <p class="quickstart-note">🐳 Requer Docker instalado. <a href="https://docs.docker.com/get-docker/" target="_blank">Instalar Docker</a></p>
-                </div>
-
-                <div class="tab-content" data-tab-content="python">
+                <div class="tab-content active" data-tab-content="python">
                     <div class="code-block">
                         <div class="code-header">
                             <span class="code-title">Terminal</span>
@@ -277,7 +258,7 @@ open http://localhost:5000</code></pre>
                     <p class="quickstart-note">🐍 Requer Python 3.11+</p>
                 </div>
 
-                <div class="tab-content" data-tab-content="source">
+                <div class="tab-content" data-tab-content="docker">
                     <div class="code-block">
                         <div class="code-header">
                             <span class="code-title">Terminal</span>
@@ -293,13 +274,16 @@ open http://localhost:5000</code></pre>
 git clone https://github.com/virgiliojr94/localpdf.io.git
 cd localpdf.io
 
-# Build com Docker
+# Build a imagem Docker
 docker build -t localpdf .
 
-# Execute
-docker run -p 5000:5000 localpdf</code></pre>
+# Execute o container
+docker run -p 5000:5000 localpdf
+
+# Acesse no navegador
+open http://localhost:5000</code></pre>
                     </div>
-                    <p class="quickstart-note">📦 Build personalizado com Docker</p>
+                    <p class="quickstart-note">� Requer Docker instalado. <a href="https://docs.docker.com/get-docker/" target="_blank">Instalar Docker</a></p>
                 </div>
             </div>
         </div>
