@@ -8,8 +8,11 @@
 [![Docker](https://img.shields.io/badge/Docker-Ready-blue.svg)](https://www.docker.com/)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
 [![All Contributors](https://img.shields.io/github/all-contributors/virgiliojr94/localpdf.io?color=ee8449&style=flat-square)](#-contribuidores)
+[![Website](https://img.shields.io/badge/Website-Online-success.svg)](https://virgiliojr94.github.io/localpdf.io/)
 
 > Todas as ferramentas PDF que você precisa, 100% local e privado
+
+**🌐 [Visite o Site Oficial](https://virgiliojr94.github.io/localpdf.io/)**
 
 [Funcionalidades](#-funcionalidades) •
 [Como Usar](#-como-usar) •
