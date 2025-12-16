@@ -11,6 +11,7 @@ from docx import Document
 from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import letter
 import openpyxl
+import ghostscript
 
 app = Flask(__name__)
 app.config['MAX_CONTENT_LENGTH'] = 100 * 1024 * 1024  # 100MB max
@@ -105,6 +106,10 @@ HTML_TEMPLATE = '''
                     <h3>📦 Comprimir PDF</h3>
                     <p>Reduza o tamanho do seu arquivo PDF</p>
                 </div>
+                <div class="tool-card" onclick="showTool('pdf-to-pdfa')">
+                    <h3>🔒 PDF para PDF/A</h3>
+                    <p>Padronize seu PDF para arquivamento (PDF/A)</p>
+                </div>
                 <div class="tool-card" onclick="showTool('word-to-pdf')">
                     <h3>📝 Word para PDF</h3>
                     <p>Converta um ou mais documentos DOCX para PDF</p>
@@ -196,6 +201,12 @@ HTML_TEMPLATE = '''
                 description: 'Reduza o tamanho do arquivo PDF mantendo a qualidade',
                 accept: '.pdf',
                 multiple: false
+            },
+            'pdf-to-pdfa': {
+                title: '🔒 PDF para PDF/A',
+                description: 'Converta PDFs para o padrão de arquivamento PDF/A-1b',
+                accept: '.pdf',
+                multiple: true
             },
             'word-to-pdf': {
                 title: '📝 Word para PDF',
@@ -480,6 +491,8 @@ def convert():
             output_files = split_pdf(files[0], temp_dir)
         elif tool == 'compress-pdf':
             output_files = compress_pdf(files[0], temp_dir)
+        elif tool == 'pdf-to-pdfa':
+            output_files = pdf_to_pdfa(files, temp_dir)
         elif tool == 'word-to-pdf':
             output_files = word_to_pdf(files, temp_dir)
         elif tool == 'excel-to-pdf':
@@ -574,6 +587,45 @@ def compress_pdf(file, temp_dir):
     doc.close()
     
     return [output_path]
+
+def pdf_to_pdfa(files, temp_dir):
+    """Converte um ou mais PDFs para PDF/A-1b usando Ghostscript."""
+    if not isinstance(files, list):
+        files = [files]
+
+    output_files = []
+
+    for file in files:
+        input_path = os.path.join(temp_dir, secure_filename(file.filename))
+        file.save(input_path)
+
+        base_name, _ = os.path.splitext(os.path.basename(input_path))
+        output_path = os.path.join(temp_dir, f'{base_name}_pdfa.pdf')
+
+        gs_args = [
+            "gs",
+            "-dPDFA=1",
+            "-dBATCH",
+            "-dNOPAUSE",
+            "-dNOOUTERSAVE",
+            "-dUseCIEColor",
+            "-sProcessColorModel=DeviceRGB",
+            "-sDEVICE=pdfwrite",
+            "-sColorConversionStrategy=UseDeviceIndependentColor",
+            "-dPDFACompatibilityPolicy=1",
+            f"-sOutputFile={output_path}",
+            input_path
+        ]
+        gs_args = [arg.encode("utf-8") if isinstance(arg, str) else arg for arg in gs_args]
+
+        try:
+            ghostscript.Ghostscript(*gs_args)
+        except Exception as e:
+            raise RuntimeError(f"Erro ao converter {file.filename} para PDF/A: {e}") from e
+
+        output_files.append(output_path)
+
+    return output_files
 
 def word_to_pdf(files, temp_dir):
     """

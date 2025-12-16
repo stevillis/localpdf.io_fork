@@ -40,6 +40,7 @@ LocalPDF.io é uma aplicação web local para manipulação de arquivos PDF e do
 - **📝 PDF → Word** - Converta PDF em documento DOCX editável
 - **📊 PDF → Excel** - Extraia tabelas para planilhas XLSX
 - **📄 PDF → Texto** - Extraia todo o texto em arquivo TXT
+- **🔒 PDF → PDF/A** - Converta para o padrão de arquivamento (PDF/A-1b)
 
 ### 🔄 Manipular PDF
 - **🔗 Mesclar PDFs** - Una vários PDFs em um único documento
@@ -71,6 +72,7 @@ cd localpdf.io
 
 # Instale as dependências
 pip install -r requirements.txt
+# Instale o Ghostscript no sistema (ex.: apt-get install ghostscript)
 
 # Execute a aplicação
 python app.py
