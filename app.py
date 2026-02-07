@@ -18,6 +18,7 @@ from flask import (
     url_for,
 )
 from pdf2docx import Converter
+from pdf2docx.converter import ConversionException
 from PIL import Image
 from reportlab.lib.pagesizes import letter
 from reportlab.pdfgen import canvas
@@ -710,11 +711,11 @@ def word_to_pdf(files, temp_dir):
 
             # Adicionar cabeçalho com nome do arquivo
             c.setFont("Helvetica-Bold", 12)
-            c.drawString(50, y_position, f"{'='*60}")
+            c.drawString(50, y_position, f"{'=' * 60}")
             y_position -= 20
             c.drawString(50, y_position, f"Documento: {file.filename}")
             y_position -= 20
-            c.drawString(50, y_position, f"{'='*60}")
+            c.drawString(50, y_position, f"{'=' * 60}")
             y_position -= 30
             c.setFont("Helvetica", 11)
 
@@ -797,9 +798,19 @@ def pdf_to_word(file, temp_dir):
     docx_filename = os.path.splitext(secure_filename(file.filename))[0] + ".docx"
     docx_path = os.path.join(temp_dir, docx_filename)
 
-    cv = Converter(pdf_path)
-    cv.convert(docx_path)
-    cv.close()
+    cv = None
+    try:
+        cv = Converter(pdf_path)
+        cv.convert(docx_path)
+    except ValueError as e:
+        raise RuntimeError(f"Erro no arquivo PDF: {e}") from e
+    except ConversionException as e:
+        raise RuntimeError(f"Erro interno na conversão: {e}") from e
+    except Exception as e:
+        raise RuntimeError(f"Erro ao converter {file.filename} para Word: {e}") from e
+    finally:
+        if cv:
+            cv.close()
 
     return [docx_path]
 
