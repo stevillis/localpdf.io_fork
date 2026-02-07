@@ -7,15 +7,12 @@ import zipfile
 import fitz  # PyMuPDF
 import ghostscript
 import openpyxl
-from docx import Document
 from flask import (
     Flask,
     jsonify,
-    redirect,
     render_template_string,
     request,
     send_file,
-    url_for,
 )
 from pdf2docx import Converter
 from pdf2docx.converter import ConversionException
